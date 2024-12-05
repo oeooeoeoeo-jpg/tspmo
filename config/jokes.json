@@ -1,0 +1,155 @@
+{
+	"start": [
+		[
+			{"type": 0, "text": "Yeah, of course {NAME} wants me to tell a joke."},
+			{"type": 0, "text": "\"Haha, look at the stupid {COLOR}{TYPE} telling jokes!\" Fuck you. It isn't funny."},
+			{"type": 0, "text": "But I'll do it anyway. Because you want me to. I hope you're happy."}
+		],
+		[
+			{"type": 0, "text": "Wanna hear a joke?"},
+			{"type": 0, "text": "No?"},
+			{"type": 0, "text": "Then go fuck yourself."}
+		],
+		[{"type": 0, "text": "{NAME} used /joke. Whoop-dee-fucking doo."}],
+		[{"type": 0, "text": "HEY YOU IDIOTS ITS TIME FOR A JOKE"}],
+		[{"type": 0, "text": "Senpai {NAME} wants me to tell a joke."}],
+		[{"type": 0, "text": "Hey niggers prepare for a joke."}],
+		[{"type": 0, "text": "Prepare to be offended faggots."}],
+		[
+			{"type": 0, "text": "Kill yourself like a trans person, {NAME}"},
+			{"type": 0, "text": "I'm not here to entertain you."}
+		],
+		[
+			{"type": 0, "text": "Prepare for something Seamus never heard of, {NAME}"},
+			{"type": 1, "anim": "praise_fwd"},
+			{"type": 0, "text": "HUMOUR"},
+			{"type": 1, "anim": "praise_back"}
+		],
+		[{"type": 0, "text": "THE FOLLOWING JOKE MAY OFFEND PEOPLE. IF YOU ARE OFFENDED, PLEASE GO TO GOATSE.INFO"}],
+		[{"type": 0, "text": "Ready for some classic Jewish comedy?"}],
+		[{"type": 0, "text": "Time for whatever horrible fucking jokes the creator of this site wrote."}]
+	],
+	"middle": [
+		[
+			{"type": 0, "text": "What is easy to get into, but hard to get out of?"},
+			{"type": 0, "text": "Child support!"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "What did the digital clock say to the grandfather clock?"},
+			{"type": 0, "text": "Suck my clock."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "What goes in pink and comes out blue?"},
+			{"type": 0, "text": "Sonic's asshole."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "What type of water won't freeze?"},
+			{"type": 0, "text": "Your mother's."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "What is in the middle of Paris?"},
+			{"type": 0, "text": "A giant inflatable buttplug."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Why did the chicken cross the road?"},
+			{"type": 1, "anim": "shrug_back"},
+			{"type": 0, "text": "Ok, let's get serious. I'll let you in on a little secret the feds don't want you knowing."},
+			{"type": 0, "text": "Phones have a secret \"Instant Charging\" feature, you can enable it by microwaving your phone."}
+		],
+		[
+			{"type": 0, "text": "What do you call a man who shaves 10 times a day?"},
+			{"type": 0, "text": "A woman."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Why can't asians drive?"},
+			{"type": 0, "text": "Because their eyes are always closed!"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Black lives matter is a joke."},
+			{"type": 0, "text": "WHITE LIVES MATTER!"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Why was six afraid of seven?"},
+			{"type": 0, "text": "Because seven was a sex offender!"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Why can't bfdi niggers graduate?"},
+			{"type": 0, "text": "Because they still have to repeat kindergarten!"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Who did the evil hohol piggy blame for his mistakes?"},
+			{"type": 0, "text": "Putain"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "How many arabs does it take to knock down a lightbulb?"},
+			{"type": 0, "text": "I don't know but just a few can knock down 2 towers."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "What do you call an autistic child with herpes?"},
+			{"type": 0, "text": "Seamus Kendrick Cremeens from Sullivan, Ohio."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Humans are like jokes."},
+			{"type": 0, "text": "Not everyone likes the dark ones!"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "I like KFC, I have no water and I have huge lips. Who am I?"},
+			{"type": 0, "text": "A stinky black nigger!"},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "What is a cow that eats grass?"},
+			{"type": 0, "text": "ASS"},
+			{"type": 0, "text": "I'm a comedic genius, I know."},
+			{"type": 1, "anim": "shrug_back"}
+		],
+		[
+			{"type": 0, "text": "Why do they call HTML HyperText?"},
+			{"type": 0, "text": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},
+			{"type": 1, "anim": "shrug_back"},
+			{"type": 0, "text": "Sorry. I just had an epiphany of my own sad, sad existence."},
+			{"type": 1, "anim": "shrug_back"}
+		]
+	],
+	"end": [
+		[
+			{"type": 0, "text": "You know {NAME}, a good friend laughs at your jokes even when they're not so funny."},
+			{"type": 0, "text": "And you fucking suck. Thanks."}
+		],
+		[
+			{"type": 0, "text": "Do I amuse you, {NAME}? Am I funny? Do I make you laugh?"},
+			{"type": 0, "text": "Please respond."}
+		],
+		[
+			{"type": 0, "text": "Laughter is the best medicine!"},
+			{"type": 0, "text": "Apart from meth."}
+		],
+		[
+			{"type": 0, "text": "Don't judge me on my sense of humor alone."},
+			{"type": 0, "text": "Help! I'm being oppressed!"}
+		],
+		[{"type": 0, "text": "Where do I come up with these? My ass?"}],
+		[{"type": 0, "text": "NOW LAUGH!"}],
+		[{"type": 0, "text": "You should tell these jokes to your mother!"}],
+		[{"type": 0, "text": "I hope you're offended."}],
+		[{"type": 0, "text": "Maybe I'll keep my day job, {NAME}. Patreon didn't accept me."}]
+	]
+}
