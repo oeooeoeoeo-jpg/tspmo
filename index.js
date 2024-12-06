@@ -203,10 +203,6 @@ io.on("connection", (socket)=>{
 		return;
 	}
 	if(ipinfo[socket.ip] == undefined) ipinfo[socket.ip] = {count: 0};
-	if(ipinfo[socket.ip].count >= config.clientlimit){
-		socket.disconnect();
-		return;
-	}
 	ipinfo[socket.ip].count++;
 
 	//IP info on disconnect
