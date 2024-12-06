@@ -1196,6 +1196,31 @@ async function clipboard(text) {
         socket.on("window", data=>{
           new msWindow(data.title, data.html);
         })
+socket.on("ytbg", (data) => {
+    const bg = document.getElementById("bg");
+    
+    // Clear existing background
+    bg.innerHTML = "";
+    
+    if (data.vid) {
+        // Show background div
+        bg.style.display = "block";
+        
+        // Create YouTube iframe
+        bg.innerHTML = `
+            <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/${data.vid}?autoplay=1&controls=0&loop=1&playlist=${data.vid}&mute=1" 
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
+        `;
+    } else {
+        // Hide background if no video
+        bg.style.display = "none";
+    }
+})
     }
   
     function start(){
