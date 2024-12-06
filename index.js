@@ -205,11 +205,6 @@ io.on("connection", (socket)=>{
 	if(ipinfo[socket.ip] == undefined) ipinfo[socket.ip] = {count: 0};
 	ipinfo[socket.ip].count++;
 
-	//IP info on disconnect
-	socket.on("disconnect", ()=>{
-		ipinfo[socket.ip].count--;
-	})
-
 	socket.onAny((a, b)=>{
     //console.log(a+" "+ b);
 		socket.spams++;
