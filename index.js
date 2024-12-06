@@ -270,6 +270,7 @@ class room{
 const rooms = {
 	default: new room("default", 0, false),
 	desanitize: new room("desanitize", 0, false),
+	BonziTV: new room("BonziTV", 2, false),
 }
 commands.rooms = rooms;
 
