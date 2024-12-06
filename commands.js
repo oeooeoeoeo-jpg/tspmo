@@ -503,6 +503,25 @@ module.exports.commands = {
     		guid: user.public.guid,
         list: copypastas.pawn
       })
+  },
+  youtubebg: (user, param) => {
+        // Only allow in BonziTV room
+        if (user.room.name !== "BonziTV") return;
+        
+        // Extract YouTube video ID
+        const videoId = param.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+        
+        if (!videoId) {
+            user.socket.emit("alert", {
+                alert: "Invalid YouTube URL. Please provide a valid YouTube video URL."
+            });
+            return;
+        }
+
+        // Broadcast background change to all users in room
+        user.room.emit("ytbg", {
+            vid: videoId[1]
+        });
   }
 }
 
