@@ -148,7 +148,7 @@ async function clipboard(text) {
     //Type of each color
     const types = {
         "peedy": "peedy",
-        "clippy": "clippy"
+        "clippy": "clippy",
         "bonzi2": "bonzi"
     }
     const colors = ["purple", "blessed", "yellow", "allah", "red", "blue", "green", "pink", "brown", "orange", "black", "jew", "floyd", "cyan", "white", "king", "pope", "rabbi", "peedy", "clippy", "troll", "jabba", "windows93", "satoko", "trump", "bonzi"];
