@@ -660,6 +660,19 @@ async function clipboard(text) {
             }, 2000);
         }
     }, 100);
+} else if(list[i].type == 2){ // New sound type
+        if(list[i].sound){ // Check if sound is specified
+            let audio = new Audio(list[i].sound);
+            audio.play();
+            
+            setTimeout(()=>{ 
+                i++; 
+                this.actqueue(list, i); 
+            }, 1000); // Wait for sound to play
+        } else {
+            i++; 
+            this.actqueue(list, i);
+        }
             } else{
                 if(this.anims[list[i].anim] == undefined){
                     i++;
