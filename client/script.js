@@ -529,18 +529,6 @@ async function clipboard(text) {
         })
         return nmsg.join(" ");
     }
-
-function updateInboxNotification() {
-    const inboxCount = Object.keys(settings.inbox || {}).length;
-    const inboxNotif = $("inboxNotification");
-    
-    if (inboxCount > 0) {
-        inboxNotif.style.display = "inline-block";
-        inboxNotif.textContent = inboxCount;
-    } else {
-        inboxNotif.style.display = "none";
-    }
-}
   
     //The msWindow class can be treated like an agent by the move handler.
     class msWindow{
@@ -1666,6 +1654,16 @@ socket.on("ytbg", (data) => {
         settings.color = color;
         document.cookie = compileCookie(settings);
     }
+
+    function updateInboxNotification() {
+  const inboxCount = Object.keys(settings.inbox || {}).length;
+  const notificationElement = document.getElementById('inboxNotification');
+  
+  if (notificationElement) {
+    notificationElement.style.display = inboxCount > 0 ? 'block' : 'none';
+    notificationElement.textContent = inboxCount;
+  }
+    }	
   
     //Useful to add in for spritesheets, JS doesn't have a default range function
     function range(bottom, to){
