@@ -327,22 +327,36 @@ module.exports.commands = {
 			})
 	},
 	dm: (user, param)=>{
-		if(!param.includes(" ")) return;
-		let target = param.substring(0, param.indexOf(" "));
-		let message = param.substring(param.indexOf(" ")+1, param.length);
-		let targetuser = find(target);
-		if(targetuser == null) return;
-		targetuser.socket.emit("talk", {guid: user.public.guid, text: message+"<br><b>Only you can see this</b>", say: message});
-		user.socket.emit("talk", {guid: user.public.guid, text: message+"<br><b>Sent to "+targetuser.public.dispname+"</b>", say: message});
-	},
-	reply: (user, param)=>{
-		if(!param.includes(" ")) return;
-		let target = param.substring(0, param.indexOf(" "));
-		let message = param.substring(param.indexOf(" ")+1, param.length);
-		let targetuser = find(target);
-		if(targetuser == null || targetuser.lastmsg == undefined) return;
-		user.room.emit("talk", {guid: user.public.guid, text: "<div style='position:relative;' class='quote'>"+targetuser.lastmsg+"</div>"+message, say: message});
-	},
+    if(!param.includes(" ")) return;
+    let target = param.substring(0, param.indexOf(" "));
+    let message = param.substring(param.indexOf(" ")+1, param.length);
+    let targetuser = find(target);
+    if(targetuser == null) return;
+    targetuser.socket.emit("talk", {
+        guid: user.public.guid, 
+        text: message+"<br><b>Only you can see this</b>", 
+        say: message,
+        isDM: true
+    });
+    user.socket.emit("talk", {
+        guid: user.public.guid, 
+        text: message+"<br><b>Sent to "+targetuser.public.dispname+"</b>", 
+        say: message
+    });
+},
+reply: (user, param)=>{
+    if(!param.includes(" ")) return;
+    let target = param.substring(0, param.indexOf(" "));
+    let message = param.substring(param.indexOf(" ")+1, param.length);
+    let targetuser = find(target);
+    if(targetuser == null || targetuser.lastmsg == undefined) return;
+    user.room.emit("talk", {
+        guid: user.public.guid, 
+        text: "<div style='position:relative;' class='quote'>"+targetuser.lastmsg+"</div>"+message, 
+        say: message,
+        isReply: true
+    });
+},
 	announce: (user, param)=>{
 		user.room.emit("announce", {title: "Announcement from "+user.public.dispname, html: `
     <table>
