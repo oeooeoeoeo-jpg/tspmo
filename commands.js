@@ -258,6 +258,29 @@ module.exports.commands = {
 		if(param == null || param[7] == undefined) param = [0,0,0,0,0,0,0,param];
 		user.room.emit("talk", {guid: user.public.guid, text: '<iframe class="usermedia" src="https://www.youtube.com/embed/'+param[7]+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>', say: ""})
 	},
+"vidlii": (user, param) => {
+    // Extract video ID from VidLii URL
+    const vidLiiMatch = param.match(/(?:https?:\/\/)?(?:www\.)?vidlii\.com\/watch\?v=([^&\s]+)/);
+    if (vidLiiMatch && vidLiiMatch[1]) {
+        user.room.emit("talk", {
+            guid: user.public.guid, 
+            text: `<iframe class="usermedia" src="https://vidlii.com/embed?v=${vidLiiMatch[1]}" frameborder="0" allowfullscreen></iframe>`, 
+            say: ""
+        });
+    }
+},
+
+"bitview": (user, param) => {
+    // Extract video ID from BitView URL
+    const bitViewMatch = param.match(/(?:https?:\/\/)?(?:www\.)?bitview\.net\/watch\?v=([^&\s]+)/);
+    if (bitViewMatch && bitViewMatch[1]) {
+        user.room.emit("talk", {
+            guid: user.public.guid, 
+            text: `<iframe class="usermedia" src="https://bitview.net/embed/${bitViewMatch[1]}" frameborder="0" allowfullscreen></iframe>`, 
+            say: ""
+        });
+    }
+},
 	video: (user, param)=>{
 		if(whitelist.some(ccurl => param.startsWith(ccurl + "/"))){
 			param = param;
