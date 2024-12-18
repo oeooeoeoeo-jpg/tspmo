@@ -882,6 +882,13 @@ async function clipboard(text) {
                                 }
                             },
                             {
+    type: 0,
+    name: "Call an YouTube Channel",
+    callback: (passthrough)=>{
+        socket.emit("command", {command: "youtubechannel", param: passthrough.pub.name});
+    }
+}
+                            {
                                 type: 0,
                                 name: "Notice Bulge",
                                 callback: (passthrough)=>{
