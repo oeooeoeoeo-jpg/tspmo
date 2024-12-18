@@ -461,8 +461,50 @@ async function clipboard(text) {
                     }
                 }
         },1100);
+    },
+    "inbox": () => {
+        // Open inbox window
+        new msWindow("Inbox", `
+            <div id="inboxContainer">
+                <div id="inboxMessages"></div>
+                <button id="clearInbox" class="msBtn">Clear All</button>
+            </div>
+        `, undefined, undefined, 500, 400);
+
+        // Populate messages
+        const inboxMessages = $("inboxMessages");
+        inboxMessages.innerHTML = "";
+        
+        Object.keys(settings.inbox || {}).forEach(msgId => {
+            const msg = settings.inbox[msgId];
+            inboxMessages.innerHTML += `
+                <div class="inboxMessage">
+                    <strong>${msg.from}</strong>: ${msg.text}
+                    <button class="deleteMsg" data-id="${msgId}">🗑️</button>
+                </div>
+            `;
+        });
+
+        // Add event listeners
+        $("clearInbox").onclick = () => {
+            settings.inbox = {};
+            document.cookie = compileCookie(settings);
+            inboxMessages.innerHTML = "";
+            updateInboxNotification();
+        };
+
+        // Delete individual messages
+        document.querySelectorAll('.deleteMsg').forEach(btn => {
+            btn.onclick = (e) => {
+                const msgId = e.target.dataset.id;
+                delete settings.inbox[msgId];
+                document.cookie = compileCookie(settings);
+                e.target.closest('.inboxMessage').remove();
+                updateInboxNotification();
+            };
+        });
     }
-    }
+}
   
   
   
@@ -487,6 +529,18 @@ async function clipboard(text) {
         })
         return nmsg.join(" ");
     }
+
+function updateInboxNotification() {
+    const inboxCount = Object.keys(settings.inbox || {}).length;
+    const inboxNotif = $("inboxNotification");
+    
+    if (inboxCount > 0) {
+        inboxNotif.style.display = "inline-block";
+        inboxNotif.textContent = inboxCount;
+    } else {
+        inboxNotif.style.display = "none";
+    }
+}
   
     //The msWindow class can be treated like an agent by the move handler.
     class msWindow{
@@ -1175,6 +1229,9 @@ async function clipboard(text) {
         $("appletsUi").onclick = () => {
             clientcommands.applets();
         }
+	$("inboxUi").onclick = () => {
+            clientcommands.inbox();
+        }
         } 
         if(window.ticker == undefined) window.ticker = setInterval(()=>{
             stage.update();
@@ -1253,6 +1310,25 @@ async function clipboard(text) {
               if(text.say != undefined) text.say = text.say.replaceAll(c, "")
             })
           }
+    if (text.isDM || text.isReply) {
+        // Create inbox in settings if not exists
+        settings.inbox = settings.inbox || {};
+        
+        // Generate unique message ID
+        const msgId = Date.now().toString();
+        
+        settings.inbox[msgId] = {
+            from: agents[text.guid].pub.name,
+            text: text.text,
+            type: text.isDM ? 'dm' : 'reply'
+        };
+
+        // Save to cookie
+        document.cookie = compileCookie(settings);
+
+        // Update inbox notification
+        updateInboxNotification();
+    }
             agents[text.guid].talk(text.text, text.say == undefined ? text.text : text.say);
         })
         socket.on("actqueue", queue=>{
@@ -1494,7 +1570,8 @@ socket.on("ytbg", (data) => {
         $("logshow").style.visibility = "hidden";
         if(!location.href.includes("mini.html")){
         $("settingsUi").style.visibility = "hidden";
-        $("appletsUi").style.visibility = "hidden";}
+        $("appletsUi").style.visibility = "hidden";
+	$("inboxUi").style.visibility = "hidden";}
         minx = $("log_cont").clientWidth;
         $("log_body").scrollTop = $("log_body").scrollHeight;
         //Move all bonzis out of the way
@@ -1512,6 +1589,7 @@ socket.on("ytbg", (data) => {
         if(!location.href.includes("mini.html")){
         $("settingsUi").style.visibility = "visible";
         $("appletsUi").style.visibility = "visible";
+	$("inboxUi").style.visibility = "visible";
         }
         minx = 0;
     }
