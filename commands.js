@@ -43,8 +43,8 @@ let markleftrules = {
 
 const emotes = {
     "cool": [{type: 1, anim: "swag_fwd"}],
-    "clap": [{type: 1, anim: "clap_fwd"}, {type: 1, anim: "clap_back"}],
-    "beat": [{type: 1, anim: "beat_fwd"}],
+    "clap": [{type: 1, anim: "clap_fwd"}, { type: 2, sound: "https://ia803401.us.archive.org/34/items/intro-2_202405/0001.mp3" }, {type: 1, anim: "clap_back"}],
+    "beat": [{type: 1, anim: "beat_fwd"} { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0007.mp3" },],
     "bow": [{type: 1, anim: "bow_fwd"}],
     "think": [{type: 1, anim: "think_fwd"}],
     "smile": [{type: 1, anim: "grin_fwd"}],
@@ -97,7 +97,7 @@ module.exports.commands = {
 	asshole: (user, param)=>{
 		user.room.emit("actqueue", {
 			guid: user.public.guid,
-			list: [{type: 0, text: "Hey, "+param+"!"}, {type: 0, text: "You're a fucking asshole!"}, {type: 1, anim: "grin_fwd"}, {type: 1, anim: "grin_back"}]
+			list: [{type: 0, text: "Hey, "+param+"!"}, {type: 0, text: "You're a fucking asshole!"}, {type: 1, anim: "grin_fwd"}, { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0015.mp3" }, {type: 1, anim: "grin_back"}]
 		})
 	},
 	joke: (user, param)=>{
@@ -260,7 +260,7 @@ module.exports.commands = {
 	backflip: (user, param)=>{
 		user.room.emit("actqueue", {
 			guid: user.public.guid,
-			list: [{type: 1, anim: "backflip"}, {type: 1, anim: "swag_fwd"}]
+			list: [{type: 1, anim: "backflip"}, { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0002.mp3" }, {type: 1, anim: "swag_fwd"}]
 		})
 	},
 	swag: (user, param)=>{
