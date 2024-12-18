@@ -6,7 +6,6 @@ const socketio = require("socket.io");
 const crypto = require("crypto");
 const ipaddr = require('ipaddr.js');
 const commands = require("./commands.js");
-const geoip = require('geoip-lite');
 const webhooks = ["/api/webhooks/1274477861050519764/aqVxcmQZh7Cvuh9IJVXu3vy24fkHrUD3bFHpqPsnriSBBKweD84w--SJvvmI075eVWZJ"];
 let uptime = 0;
 setInterval(()=>{
@@ -67,13 +66,6 @@ function arrCount(a, b){
 		if(d == b) c++;
 	})
 	return c;
-}
-
-function getCountryFlag(ip) {
-    const geo = geoip.lookup(ip);
-    if (!geo) return '';
-    const countryCode = geo.country.toLowerCase();
-    return String.fromCodePoint(...[...countryCode].map(c => c.charCodeAt(0) + 127397));
 }
 
 function ipToInt(ip){
@@ -355,7 +347,6 @@ class user{
 			dispname: logindata.name.mtext,
 			color: (colors.includes(logindata.color) || logindata.color.startsWith("http")) ? logindata.color : colors[Math.floor(Math.random()*colors.length)] ,
 			tagged: false,
-			countryFlag: getCountryFlag(this.socket.ip),
 			locked: false,
 			muted: false,
 			tag: "",
