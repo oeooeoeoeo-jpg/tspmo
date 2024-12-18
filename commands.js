@@ -115,7 +115,7 @@ module.exports.commands = {
 	    {type: 1, anim: "grin_back"}
         ]
     })
-}
+},
 	joke: (user, param)=>{
 		let joke = [];
 		jokes.start[Math.floor(Math.random()*jokes.start.length)].forEach(jk=>{
