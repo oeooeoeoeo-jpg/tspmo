@@ -44,7 +44,7 @@ let markleftrules = {
 const emotes = {
     "cool": [{type: 1, anim: "swag_fwd"}],
     "clap": [{type: 1, anim: "clap_fwd"}, { type: 2, sound: "https://ia803401.us.archive.org/34/items/intro-2_202405/0001.mp3" }, {type: 1, anim: "clap_back"}],
-    "beat": [{type: 1, anim: "beat_fwd"} { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0007.mp3" },],
+    "beat": [{type: 1, anim: "beat_fwd"} { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0007.mp3" }],
     "bow": [{type: 1, anim: "bow_fwd"}],
     "think": [{type: 1, anim: "think_fwd"}],
     "smile": [{type: 1, anim: "grin_fwd"}],
