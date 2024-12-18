@@ -47,11 +47,11 @@ const emotes = {
     "beat": [{type: 1, anim: "beat_fwd"}, { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0007.mp3" }],
     "bow": [{type: 1, anim: "bow_fwd"}],
     "think": [{type: 1, anim: "think_fwd"}],
-    "smile": [{type: 1, anim: "grin_fwd"} { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0015.mp3" }],
+    "smile": [{type: 1, anim: "grin_fwd"}, { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0015.mp3" }],
     "banana": [{type: 1, anim: "banana_eat"}],
     "juggle": [{type: 1, anim: "juggle"}],
     "taptaptap": [{type: 1, anim: "taptaptap"}],
-    "yawn": [{type: 1, anim: "yawn"} { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0003.mp3" }],
+    "yawn": [{type: 1, anim: "yawn"}, { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0003.mp3" }],
 }
 
 module.exports.config = config;
