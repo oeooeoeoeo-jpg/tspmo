@@ -529,7 +529,14 @@ async function clipboard(text) {
         })
         return nmsg.join(" ");
     }
-  
+	
+    function updateUserDisplay(user) {
+    let nameDisplay = user.name;
+    if (user.tagged) {
+        nameDisplay += ` [${user.tag}${user.countryFlag}]`;
+    }
+    return nameDisplay;
+    }
     //The msWindow class can be treated like an agent by the move handler.
     class msWindow{
         constructor(title, html, x, y, width, height, buttons){
