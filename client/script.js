@@ -608,29 +608,58 @@ async function clipboard(text) {
             if(i >= list.length) return;
             if(list[i].say == undefined) list[i].say = list[i].text;
             if(list[i].type == 0){
-                setTimeout(()=>{
-                    if(settings.under) censor.forEach(c=>{
-                      list[i].text = list[i].text.replaceAll(c, "****");
-                      if(list[i].say != undefined) list[i].say = list[i].say.replaceAll(c, "")
-                    })
-                    $(this.id+"t").innerHTML = linkify(list[i].text);
-                    $(this.id+"b").style.display = "block"
-                    if(!this.ttsmute) speak.play(list[i].say.replace(/[!:;]/g, '').replace(/ etc/gi, "E T C").replace(/ eg/gi, "egg"), this.id, this.pub.voice, ()=>{
-                        delete window.tts[this.id];
-                        $(this.id+"b").style.display = "none";
-                        i++;
-                        this.actqueue(list, i);
-                    })
-                    else{
-                      setTimeout(()=>{
-                        delete window.tts[this.id];
-                        $(this.id+"b").style.display = "none";
-                        i++;
-                        this.actqueue(list, i);
-                      }, 2000)
-                    }
-                    pushlog("<font color='"+this.pub.color+"'>"+this.pub.name+": </font>"+list[i].text);
-                }, 100);
+                setTimeout(() => {
+        // Censor check if under settings
+        if (settings.under) {
+            censor.forEach(c => {
+                list[i].text = list[i].text.replaceAll(c, "****");
+                if (list[i].say != undefined) list[i].say = list[i].say.replaceAll(c, "");
+            });
+        }
+
+        // Display bubble
+        $(this.id + "b").style.display = "block";
+
+        // Prepare say text
+        let say = list[i].say;
+        if (say.startsWith("-") || this.ttsmute) {
+            say = "";
+        } else {
+            say = desanitize(say)
+                .replace(/[! :;]/g, '')
+                .replace(/ etc/gi, "E T C")
+                .replace(/ eg/gi, "egg");
+        }
+
+        // Set text and log
+        $(this.id + "t").innerHTML = linkify(list[i].text);
+        pushlog("<font color='" + this.pub.color + "'>" + this.pub.name + ": </font>" + linkify(list[i].text));
+
+        // TTS handling
+        if (say !== "" && !this.ttsmute) {
+            const url = "https://www.tetyys.com/SAPI4/SAPI4?text=" + encodeURIComponent(say) + 
+                        "&voice=" + encodeURIComponent("Adult Male #2, American English (TruVoice)") + 
+                        "&pitch=140&speed=157";
+
+            window.tts[this.id] = new Audio(url);
+            window.tts[this.id].onended = () => {
+                delete window.tts[this.id];
+                $(this.id + "b").style.display = "none";
+                
+                // Move to next item in queue
+                i++;
+                this.actqueue(list, i);
+            };
+            window.tts[this.id].play();
+        } else {
+            // If no TTS, wait and move to next item
+            setTimeout(() => {
+                $(this.id + "b").style.display = "none";
+                i++;
+                this.actqueue(list, i);
+            }, 2000);
+        }
+    }, 100);
             } else{
                 if(this.anims[list[i].anim] == undefined){
                     i++;
