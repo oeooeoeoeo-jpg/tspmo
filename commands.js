@@ -1,5 +1,6 @@
 const fs = require("fs");
 const crypto = require("crypto");
+const axios = require('axios');
 //Read settings
 const config = JSON.parse(fs.readFileSync("./config/server-settings.json"));
 const jokes = JSON.parse(fs.readFileSync("./config/jokes.json"));
@@ -575,7 +576,26 @@ reply: (user, param)=>{
         user.room.emit("ytbg", {
             vid: videoId[1]
         });
-  }
+  },
+getcountryflag: (user, param) => {
+  
+  axios.get(`https://restcountries.com/v3.1/name/${param}`)
+    .then(response => {
+      const flagUrl = response.data[0].flags.png;
+      user.room.emit("talk", {
+        guid: user.public.guid, 
+        text: `<img src="${flagUrl}" style="max-width:200px">`,
+        say: `Here's the flag of ${param}`
+      });
+    })
+    .catch(error => {
+      user.room.emit("talk", {
+        guid: user.public.guid,
+        text: "Could not find flag for that country",
+        say: "Could not find flag for that country" 
+      });
+    });
+}
 }
 
 function find(guid){
