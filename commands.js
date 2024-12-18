@@ -100,6 +100,18 @@ module.exports.commands = {
 			list: [{type: 0, text: "Hey, "+param+"!"}, {type: 0, text: "You're a fucking asshole!"}, {type: 1, anim: "grin_fwd"}, { type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0015.mp3" }, {type: 1, anim: "grin_back"}]
 		})
 	},
+"youtubechannel": (user, param)=>{
+    user.room.emit("actqueue", {
+        guid: user.public.guid,
+        list: [
+            {type: 0, text: `Hey, ${param}! I know your secret YouTube channel name!`},
+            {type: 0, text: "It's... BonziWORLD!"},
+            {type: 1, anim: "grin_fwd"},
+	    {type: 2, sound: "https://ia903401.us.archive.org/34/items/intro-2_202405/0015.mp3"},
+	    {type: 1, anim: "grin_back"}
+        ]
+    })
+}
 	joke: (user, param)=>{
 		let joke = [];
 		jokes.start[Math.floor(Math.random()*jokes.start.length)].forEach(jk=>{
