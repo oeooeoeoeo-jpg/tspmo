@@ -149,9 +149,10 @@ async function clipboard(text) {
     const types = {
         "peedy": "peedy",
         "clippy": "clippy",
-        "bonzi": "bonzi2"
+        "bonzi": "bonzi2",
+	"genie": "genie"
     }
-    const colors = ["purple", "blessed", "yellow", "allah", "red", "blue", "green", "pink", "brown", "orange", "black", "jew", "floyd", "cyan", "white", "king", "pope", "rabbi", "peedy", "clippy", "troll", "jabba", "windows93", "satoko", "trump", "bonzi"];
+    const colors = ["purple", "blessed", "yellow", "allah", "red", "blue", "green", "pink", "brown", "orange", "black", "jew", "floyd", "cyan", "white", "king", "pope", "rabbi", "peedy", "clippy", "troll", "jabba", "windows93", "satoko", "trump", "bonzi", "genie"];
   
     //Set up stylesheets
     const sheets = {
@@ -311,6 +312,28 @@ async function clipboard(text) {
                 bow_fwd: [1, 11, "bow_idle", 0.25],
                 bow_idle: 11,
                 bow_back: {frames: range(1, 11).reverse(), next: "idle", speed: 0.25}
+            }
+        },
+	genie: {
+            spritew: 128,
+            spriteh: 128,
+            w: 2688,
+            h: 2560,
+            toppad: 40,
+            anims: {
+                idle: 0,
+                enter: [333, 342, "idle", 0.25],
+                leave: {frames: [0].concat(range(15, 25)), speed: 0.25},
+                shrug_fwd: [57, 61, "shrug_idle", 0.25],
+                shrug_idle: 61,
+                shrug_back: {frames: range(57, 61).reverse(), next: "idle", speed: 0.25},
+                bow_fwd: [39, 52, "bow_idle", 0.25],
+                bow_idle: 52,
+                bow_back: {frames: range(39, 52).reverse(), next: "idle", speed: 0.25},
+		earth_fwd: [70, 77, 79, 88, "earth_idle", 0.25],
+		earth_idle: [79, 88],
+		earth_back: {frames: range(70, 77, 79).reverse(), next: "idle", speed: 0.25},
+		grin_fwd: [263, 280, "idle", 0.25]
             }
         },
     }
