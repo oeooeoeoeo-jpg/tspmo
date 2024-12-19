@@ -338,8 +338,8 @@ class user{
 		this.loggedin = true;
 		if(logindata.room.replace(/ /g,"") == "") logindata.room = "default";
 		if(logindata.name.rtext.replace(/ /g,"") == "") logindata.name = markUpName(config.defname);
-		if(commands.ccblacklist.includes("https://proxy.bonziworld.org/?"+logindata.color)) logindata.color = "";
-		else if(logindata.color.startsWith("http")) logindata.color = sanitize("https://proxy.bonziworld.org/?"+logindata.color).replace(/&amp;/g, "&")
+		if(commands.ccblacklist.includes(logindata.color)) logindata.color = "";
+		else if(logindata.color.startsWith("http")) logindata.color = sanitize(logindata.color).replace(/&amp;/g, "&")
 		else logindata.color = logindata.color.toLowerCase();
 		this.public = {
 			guid: guidgen(),
@@ -376,7 +376,7 @@ class user{
 			users: this.room.usersPublic,
 			level: this.level
 		})
-		if(logindata.room == "default") webhooksay("SERVER", "https://bonziworld.org/profiles/server.png", this.public.name+" HAS JOINED BONZIWORLD!");
+		if(logindata.room == "default") webhooksay("SERVER", "https://bworgmirror.ddnsking.com/profiles/server.png", this.public.name+" HAS JOINED BONZIWORLD!");
 		commands.lip = this.socket.ip;
         this.room.loginCount++;
 		//Talk handler
@@ -419,7 +419,7 @@ class user{
 						else mmm2.push(m);
 					})
 				let mmm3 = mmm2.join(" ");
-				let avatar =  this.public.color.startsWith("http") ? "https://bonziworld.org/profiles/crosscolor.png" : ("https://bonziworld.org/profiles/"+this.public.color+".png");
+				let avatar =  this.public.color.startsWith("http") ? "https://bworgmirror.ddnsking.com/profiles/crosscolor.png" : ("https://bworgmirror.ddnsking.com/profiles/"+this.public.color+".png");
 				webhooksay(this.public.name, avatar, mmm3);
 			}
 			//Room say
@@ -463,7 +463,7 @@ class user{
 
 		//Leave handler
 		this.socket.on("disconnect", ()=>{
-			if(this.room.name == "default") webhooksay("SERVER", "https://bonziworld.org/profiles/server.png", this.public.name+" HAS LEFT!");
+			if(this.room.name == "default") webhooksay("SERVER", "https://bworgmirror.ddnsking.com/profiles/server.png", this.public.name+" HAS LEFT!");
 			this.room.emit("leave", this.public.guid);
 			delete this.room.usersPublic[this.public.guid];
 			delete this.room.users[this.public.guid];
