@@ -539,7 +539,7 @@ async function clipboard(text) {
   
     function pushlog(text){
       var toscroll = $("log_body").scrollHeight - $("log_body").scrollTop < 605;
-      $("log_body").insertAdjacentHTML("beforeend","<p>"+text+"</p>");
+      $("log_body").insertAdjacentHTML("beforeend","<p><small>"+text+"</small></p>");
       if(toscroll) $("log_body").scrollTop = $("log_body").scrollHeight;
     }
   
