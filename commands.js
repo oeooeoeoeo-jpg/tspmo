@@ -1,6 +1,5 @@
 const fs = require("fs");
 const crypto = require("crypto");
-const axios = require('axios');
 //Read settings
 const config = JSON.parse(fs.readFileSync("./config/server-settings.json"));
 const jokes = JSON.parse(fs.readFileSync("./config/jokes.json"));
@@ -66,7 +65,8 @@ const whitelist = [
 	"https://files.catbox.moe","https://bonziworld.org","https://cdn.discordapp.com",
 	"https://media.discordapp.net","https://discord.com","https://pomf2.lain.la",
 	"https://i.ibb.co","https://i.imgur.com","https://file.garden",
-	"https://encrypted-tbn0.gstatic.com","https://upload.wikimedia.org","https://wiki.bonziworld.org"
+	"https://encrypted-tbn0.gstatic.com","https://upload.wikimedia.org","https://wiki.bonziworld.org",
+	"archive.org","rule34.xxx"
 ];
 module.exports.whitelist = whitelist;
 setInterval(()=>{module.exports.bancount = 0}, 60000*5)
@@ -576,26 +576,7 @@ reply: (user, param)=>{
         user.room.emit("ytbg", {
             vid: videoId[1]
         });
-  },
-getcountryflag: (user, param) => {
-  
-  axios.get(`https://restcountries.com/v3.1/name/${param}`)
-    .then(response => {
-      const flagUrl = response.data[0].flags.png;
-      user.room.emit("talk", {
-        guid: user.public.guid, 
-        text: `<img src="${flagUrl}" style="max-width:200px">`,
-        say: `Here's the flag of ${param}`
-      });
-    })
-    .catch(error => {
-      user.room.emit("talk", {
-        guid: user.public.guid,
-        text: "Could not find flag for that country",
-        say: "Could not find flag for that country" 
-      });
-    });
-}
+  }
 }
 
 function find(guid){
