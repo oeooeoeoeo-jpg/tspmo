@@ -560,7 +560,7 @@ reply: (user, param)=>{
   },
   youtubebg: (user, param) => {
         // Only allow in BonziTV room
-        if (user.room.name !== "BonziTV") return;
+        if (user.room.name !== "BonziTV" && "default" || "") return;
         
         // Extract YouTube video ID
         const videoId = param.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
