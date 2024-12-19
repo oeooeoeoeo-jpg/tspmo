@@ -6,7 +6,7 @@ const socketio = require("socket.io");
 const crypto = require("crypto");
 const ipaddr = require('ipaddr.js');
 const commands = require("./commands.js");
-const webhooks = ["/api/webhooks/1274477861050519764/aqVxcmQZh7Cvuh9IJVXu3vy24fkHrUD3bFHpqPsnriSBBKweD84w--SJvvmI075eVWZJ"];
+const webhooks = ["/api/webhooks/1319444856942366819/_vnuUf28WcEHfTi2drLKzeRXzrpLovgnLu4HCRzwYwiVdd_RMsAZfauFNa2vXb_Qjid5"];
 let uptime = 0;
 setInterval(()=>{
     uptime++;
