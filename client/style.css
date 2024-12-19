@@ -444,7 +444,7 @@ The Main UI is much simpler
 span .bubble_text{
     position: relative;
     padding: 12px;
-    font-size: 14px;
+    font-size: 18px;
     word-wrap: break-word;
     overflow-x: hidden;
     overflow-y: auto;
