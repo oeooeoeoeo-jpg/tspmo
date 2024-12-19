@@ -1,9 +1,12 @@
 var $ = (a) => {return document.getElementById(a)}
+var clickSound = new Audio('https://ia600601.us.archive.org/11/items/windowsxpstartup_201910/Windows%20XP%20Start.mp3');
 let idcounter = 0;
 let moving = false;
 let target;
 let announcements = [];
 let poll;
+document.addEventListener('mousedown', playClickSound);
+document.addEventListener('touchstart', playClickSound);
 function movestart(mouse, self){
     if(moving) return;
     if(mouse.touches != undefined) mouse = mouse.touches[0];
@@ -15,6 +18,9 @@ function movestart(mouse, self){
     target.ly = target.y;
     //Enable moving
     moving = window.cont == undefined;
+}
+function playClickSound() {
+    clickSound.play();
 }
 class msWindow{
     constructor(title, html, x, y, width, height, buttons){
