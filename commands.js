@@ -558,10 +558,7 @@ reply: (user, param)=>{
         list: copypastas.pawn
       })
   },
-  youtubebg: (user, param) => {
-        // Only allow in BonziTV room
-        if (user.room.name !== "BonziTV" && "default" || "") return;
-        
+  youtubebg: (user, param) => {        
         // Extract YouTube video ID
         const videoId = param.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
         
