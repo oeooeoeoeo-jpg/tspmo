@@ -574,7 +574,7 @@ var resetSock = () => {
                 updateInboxNotification();
             };
         });
-    }
+    },
     "rooms": () => {
         new msWindow(`Rooms Manager`, `
                 <img src="/icons/changeroom.png" width="60"height="60"></img>
