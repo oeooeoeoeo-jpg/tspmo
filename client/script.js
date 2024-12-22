@@ -1310,13 +1310,10 @@ var resetSock = () => {
         if(!location.href.includes("mini.html")){
         $("settingsUi").onclick = () => {
             clientcommands.settings();
-        },
+        }
         $("appletsUi").onclick = () => {
             clientcommands.applets();
-        },
-	$("inboxUi").onclick = () => {
-            clientcommands.inbox();
-        },
+        }
 	$("roomUi").onclick = () => {
             clientcommands.rooms();
         }
