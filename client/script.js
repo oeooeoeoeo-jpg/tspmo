@@ -1264,6 +1264,8 @@ async function clipboard(text) {
         }
     });
     function setup(logindata){
+	var aud = new Audio("https://ia800601.us.archive.org/11/items/windowsxpstartup_201910/Windows%20XP%20Startup.mp3);
+        aud.play();
         if(!location.href.includes("mini.html")){
         $("settingsUi").onclick = () => {
             clientcommands.settings();
