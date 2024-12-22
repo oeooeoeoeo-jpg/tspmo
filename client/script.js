@@ -151,6 +151,7 @@ var resetSock = () => {
     let talktarget = undefined;
     let mobile = innerWidth<=560;
     let stage;
+    let roomUi = $("roomUi");
     const agents = {
     };
     setInterval(()=>{Object.keys(agents).forEach(a=>{agents[a].pub.joined++})}, 60000)
@@ -1307,7 +1308,7 @@ var resetSock = () => {
 	var aud = new Audio("https://ia800601.us.archive.org/11/items/windowsxpstartup_201910/Windows%20XP%20Startup.mp3");
         aud.play();
         if(!location.href.includes("mini.html")){
-	$("roomUi").onclick = () => {
+	roomUi.onclick = () => {
             clientcommands.rooms();
         }
         $("settingsUi").onclick = () => {
