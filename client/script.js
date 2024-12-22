@@ -109,6 +109,30 @@ async function clipboard(text) {
       console.error('Failed to copy text:', err);
     }
   }
+var resetSock = () => {
+    socket.disconnect();
+    setTimeout(() => {
+        socket.connect();
+        //Clear previous event listeners
+        socket.off("leave");
+        socket.off("join");
+        socket.off("update");
+        socket.off("kick");
+        socket.off("announce");
+        socket.off("talk");
+        socket.off("actqueue");
+        socket.off("update_self");
+        socket.off("banwindow");
+        socket.off("rawdata");
+        socket.off("window");
+        //Setup
+        socket.emit("login", {
+            name: settings.name,
+            color: settings.color,
+            room: room
+        });
+    }, 1100);
+}
 
 
 (() => {
@@ -550,6 +574,22 @@ async function clipboard(text) {
                 updateInboxNotification();
             };
         });
+    }
+    "rooms": () => {
+        new msWindow(`Rooms Manager`, `
+                <img src="/icons/changeroom.png" width="60"height="60"></img>
+                <input type="text" placeholder="Enter Room ID Here..." id="newroom">
+        `, undefined, undefined, undefined, undefined, [{
+            name: "Go",
+            callback: () => {
+                room = $("newroom").value;
+                resetSock();
+                $("error_page").style.visibility = "hidden";
+                setTimeout(() => {
+                    $("error_page").style.visibility = "visible";
+                }, 5000);
+            }
+        }])
     }
 }
   
@@ -1276,6 +1316,9 @@ async function clipboard(text) {
 	$("inboxUi").onclick = () => {
             clientcommands.inbox();
         }
+	$("roomUi").onclick = () => {
+            clientcommands.rooms();
+        }
         } 
         if(window.ticker == undefined) window.ticker = setInterval(()=>{
             stage.update();
@@ -1615,7 +1658,9 @@ socket.on("ytbg", (data) => {
         if(!location.href.includes("mini.html")){
         $("settingsUi").style.visibility = "hidden";
         $("appletsUi").style.visibility = "hidden";
-	$("inboxUi").style.visibility = "hidden";}
+	$("inboxUi").style.visibility = "hidden";
+	$("roomUi").style.visibility = "hidden";
+	}
         minx = $("log_cont").clientWidth;
         $("log_body").scrollTop = $("log_body").scrollHeight;
         //Move all bonzis out of the way
@@ -1634,6 +1679,7 @@ socket.on("ytbg", (data) => {
         $("settingsUi").style.visibility = "visible";
         $("appletsUi").style.visibility = "visible";
 	$("inboxUi").style.visibility = "visible";
+	$("roomUi").style.visibility = "visible";
         }
         minx = 0;
     }
