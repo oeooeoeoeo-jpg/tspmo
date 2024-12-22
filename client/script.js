@@ -577,7 +577,7 @@ var resetSock = () => {
     },
     "rooms": () => {
         new msWindow(`Rooms Manager`, `
-                <img src="/icons/changeroom.png" width="60"height="60"></img>
+                <img src="https://files.catbox.moe/qerf96.png" width="60"height="60"></img>
                 <input type="text" placeholder="Enter Room ID Here..." id="newroom">
         `, undefined, undefined, undefined, undefined, [{
             name: "Go",
