@@ -1307,6 +1307,9 @@ var resetSock = () => {
 	var aud = new Audio("https://ia800601.us.archive.org/11/items/windowsxpstartup_201910/Windows%20XP%20Startup.mp3");
         aud.play();
         if(!location.href.includes("mini.html")){
+	$("roomUi").onclick = () => {
+            clientcommands.rooms();
+        }
         $("settingsUi").onclick = () => {
             clientcommands.settings();
         }
@@ -1315,9 +1318,6 @@ var resetSock = () => {
         }
 	$("inboxUi").onclick = () => {
             clientcommands.inbox();
-        }
-	$("roomUi").onclick = () => {
-            clientcommands.rooms();
         }
         } 
         if(window.ticker == undefined) window.ticker = setInterval(()=>{
