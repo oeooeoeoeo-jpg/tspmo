@@ -414,7 +414,7 @@ var resetSock = () => {
                 <table>
                 <tr>
                 <td class="side">
-                <img src="./img/assets/settings.ico">
+                <img src="https://raw.githubusercontent.com/softwarehistorysociety/XPIcons/refs/heads/main/XP/ControlPanel.png">
                 </td>
                 <td>
                 <span class="win_text">
@@ -1304,7 +1304,7 @@ var resetSock = () => {
         }
     });
     function setup(logindata){
-	var aud = new Audio("https://ia800601.us.archive.org/11/items/windowsxpstartup_201910/Windows%20XP%20Startup.mp3);
+	var aud = new Audio("https://ia800601.us.archive.org/11/items/windowsxpstartup_201910/Windows%20XP%20Startup.mp3");
         aud.play();
         if(!location.href.includes("mini.html")){
         $("settingsUi").onclick = () => {
