@@ -1314,9 +1314,6 @@ var resetSock = () => {
         $("appletsUi").onclick = () => {
             clientcommands.applets();
         }
-	$("roomUi").onclick = () => {
-            clientcommands.rooms();
-        }
         } 
         if(window.ticker == undefined) window.ticker = setInterval(()=>{
             stage.update();
