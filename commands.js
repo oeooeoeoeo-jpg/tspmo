@@ -21,6 +21,14 @@ function ipToInt(ip){
 	return ipInt;
 }
 
+function archiveorgwhitelist(url) {
+    const archiveOrgPatterns = [
+        /^https:\/\/ia\d+\.[a-z]{2}\.archive\.org\//,
+        /^https:\/\/archive\.org\//
+    ];
+    return archiveOrgPatterns.some(pattern => pattern.test(url));
+}
+
 //NOTE: List parsing must be compatible with text editors that add \r and ones that don't
 let ccc = fs.readFileSync("./config/colors.txt").toString().replace(/\r/g, "");
 if(ccc.endsWith("\n")) ccc = ccc.substring(0, ccc.length-1);
@@ -69,6 +77,7 @@ const whitelist = [
 	"https://www.avid.wiki","https://user-content.static.wf","https://booru.soyjak.st/"
 ];
 module.exports.whitelist = whitelist;
+module.exports.archiveorgwhitelist = archiveorgwhitelist;
 setInterval(()=>{module.exports.bancount = 0}, 60000*5)
 module.exports.commands = {
 	color: (user, param)=>{
@@ -78,7 +87,7 @@ module.exports.commands = {
 		if(param.startsWith("https://") && !param.endsWith(".svg") && !param.includes(".svg?") ){
 			if(module.exports.ccblacklist.includes(user.public.color) || module.exports.ccblacklist.includes(param)) user.public.color = "jew";
 			
-			if(whitelist.some(ccurl => param.startsWith(ccurl + "/"))){
+			if(whitelist.some(ccurl => param.startsWith(ccurl + "/")) || archiveorgwhitelist(param)){
 				user.public.color = param;
 			} else {
 				user.public.color = colors[Math.floor(Math.random() * colors.length)];
@@ -283,14 +292,14 @@ module.exports.commands = {
     }
 },
 	video: (user, param)=>{
-		if(whitelist.some(ccurl => param.startsWith(ccurl + "/"))){
+		if(whitelist.some(ccurl => param.startsWith(ccurl + "/")) || archiveorgwhitelist(param)){
 			param = param;
 			user.room.emit("talk", {guid: user.public.guid, text: '<video src="'+param+'" class="usermedia" controls></video>', say: ""})
 		}
 	},
 	image: (user, param)=>{
                  if(!param.endsWith(".svg") && !param.includes(".svg?") ){
-		if(whitelist.some(ccurl => param.startsWith(ccurl + "/"))){
+		if(whitelist.some(ccurl => param.startsWith(ccurl + "/")) || archiveorgwhitelist(param)){
 			param = param;
 		} else {
 			param = "https://bonziworld.org/img/satoko.png";
