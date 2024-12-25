@@ -74,7 +74,7 @@ const whitelist = [
 	"https://media.discordapp.net","https://discord.com","https://pomf2.lain.la",
 	"https://i.ibb.co","https://i.imgur.com","https://file.garden",
 	"https://encrypted-tbn0.gstatic.com","https://upload.wikimedia.org","https://wiki.bonziworld.org",
-	"https://www.avid.wiki","https://user-content.static.wf","https://booru.soyjak.st/"
+	"https://www.avid.wiki","https://user-content.static.wf","https://booru.soyjak.st/","https://raw.githubusercontent.com/"
 ];
 module.exports.whitelist = whitelist;
 module.exports.archiveorgwhitelist = archiveorgwhitelist;
