@@ -796,26 +796,44 @@ var resetSock = () => {
         }
         talk(write, say){
           this.cancel();
-          setTimeout(()=>{
-            $(this.id+"b").style.display = "block"
-            if(say.startsWith("-") || this.ttsmute) say="";
-            else say = desanitize(say).replace(/[!:;]/g, '').replace(/ etc/gi, "E T C").replace(/ eg/gi, "egg");
-
-            if(say != "") {
-              const url = "https://www.tetyys.com/SAPI4/SAPI4?text=" + encodeURIComponent(say) + "&voice=" + encodeURIComponent("Adult Male #2, American English (TruVoice)") + "&pitch=140&speed=157";
-
-              window.tts[this.id] = new Audio(url);
-              window.tts[this.id].onended = () => {
-                delete window.tts[this.id];
-                $(this.id+"b").style.display = "none";
-              };
-              window.tts[this.id].play();
+          setTimeout(() => {
+            $(this.id + "b").style.display = "block";
+            
+            // Add close button to bubble
+            if (!$(this.id + "b_close")) {
+                $(this.id + "b").insertAdjacentHTML('afterbegin', 
+                    `<div class="bubble_close" id="${this.id}b_close">×</div>`
+                );
+                
+                // Add click handler for close button
+                $(this.id + "b_close").onclick = () => {
+                    this.cancel();
+                };
             }
 
-            $(this.id+"t").innerHTML = linkify(write);
-            pushlog("<font color='"+this.pub.color+"'>"+this.pub.name+": </font>"+linkify(write));
-          }, 100)
-        }
+            if (say.startsWith("-") || this.ttsmute) say = "";
+            else say = desanitize(say).replace(/[!:;]/g, '').replace(/ etc/gi, "E T C").replace(/ eg/gi, "egg");
+
+            // Add @everyone ping highlighting
+            write = write.replace(/@everyone/g, '<span class="ping-everyone">@everyone</span>');
+
+            if (say != "") {
+                const url = "https://www.tetyys.com/SAPI4/SAPI4?text=" + encodeURIComponent(say) + 
+                           "&voice=" + encodeURIComponent("Adult Male #2, American English (TruVoice)") + 
+                           "&pitch=140&speed=157";
+
+                window.tts[this.id] = new Audio(url);
+                window.tts[this.id].onended = () => {
+                    delete window.tts[this.id];
+                    $(this.id + "b").style.display = "none";
+                };
+                window.tts[this.id].play();
+            }
+
+            $(this.id + "t").innerHTML = linkify(write);
+            pushlog("<font color='" + this.pub.color + "'>" + this.pub.name + ": </font>" + linkify(write));
+        }, 100);
+}
         actqueue(list, i){
             if(i == 0) this.cancel();
             if(i >= list.length) return;

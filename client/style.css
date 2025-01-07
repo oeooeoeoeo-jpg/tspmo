@@ -778,3 +778,38 @@ span .bubble_text{
     border: none;
     cursor: pointer;
 }
+
+/* Add styles for the close button in speech bubbles */
+.bubble_close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    background: #ffffe1;
+    border: 1px solid #999;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    z-index: 3;
+}
+
+.bubble_close:hover {
+    background: #ff6b6b;
+    color: white;
+}
+
+/* Add some padding to accommodate the close button */
+.bubble_text {
+    padding-right: 20px !important;
+}
+
+/* Style for @everyone ping highlight */
+.ping-everyone {
+    background-color: rgba(0, 128, 255, 0.2);
+    color: #0066cc;
+    padding: 0 2px;
+    border-radius: 3px;
+}
