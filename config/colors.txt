@@ -22,4 +22,6 @@ satoko
 trump
 bonzi
 genie
+mametchi
+dirlewanger
 sam
