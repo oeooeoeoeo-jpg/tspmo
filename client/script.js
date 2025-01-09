@@ -824,7 +824,7 @@ var resetSock = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        text: text,
+        text: say,
         character: 'Plankton'
       })
     });
