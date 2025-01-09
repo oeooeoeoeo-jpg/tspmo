@@ -828,7 +828,9 @@ var resetSock = () => {
         character: 'Plankton'
       })
     });
-    window.tts[this.id] = new Audio(response.blob());
+response.blob().then(blob => {
+  window.tts[this.id] = new Audio(URL.createObjectURL(blob));
+});
     window.tts[this.id].onended = () => {
       delete window.tts[this.id];
       $(this.id + "b").style.display = "none";
@@ -897,7 +899,9 @@ if (this.pub.color === "plankton") {
         character: 'Plankton'
       })
     });
-    window.tts[this.id] = new Audio(response.blob());
+response.blob().then(blob => {
+  window.tts[this.id] = new Audio(URL.createObjectURL(blob));
+});
     window.tts[this.id].onended = () => {
       delete window.tts[this.id];
       $(this.id + "b").style.display = "none";
