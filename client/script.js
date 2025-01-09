@@ -818,7 +818,7 @@ var resetSock = () => {
             write = write.replace(/@everyone/g, '<span class="ping-everyone">@everyone</span>');
 
             if (this.pub.color === "plankton") {
-    const response = await fetch('https://fixed-towering-viper.glitch.me/tts', {
+    const response = fetch('https://fixed-towering-viper.glitch.me/tts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -828,7 +828,7 @@ var resetSock = () => {
         character: 'Plankton'
       })
     });
-    window.tts[this.id] = new Audio(await response.blob());
+    window.tts[this.id] = new Audio(response.blob());
     window.tts[this.id].onended = () => {
       delete window.tts[this.id];
       $(this.id + "b").style.display = "none";
@@ -887,7 +887,7 @@ var resetSock = () => {
 
         // TTS handling
 if (this.pub.color === "plankton") {
-    const response = await fetch('https://fixed-towering-viper.glitch.me/tts', {
+    const response = fetch('https://fixed-towering-viper.glitch.me/tts', {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json'
@@ -897,7 +897,7 @@ if (this.pub.color === "plankton") {
         character: 'Plankton'
       })
     });
-    window.tts[this.id] = new Audio(await response.blob());
+    window.tts[this.id] = new Audio(response.blob());
     window.tts[this.id].onended = () => {
       delete window.tts[this.id];
       $(this.id + "b").style.display = "none";
