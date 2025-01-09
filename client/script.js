@@ -817,39 +817,18 @@ var resetSock = () => {
             // Add @everyone ping highlighting
             write = write.replace(/@everyone/g, '<span class="ping-everyone">@everyone</span>');
 
-            if (this.pub.color === "plankton") {
-    const response = fetch('https://fixed-towering-viper.glitch.me/tts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        text: say,
-        character: 'Plankton'
-      })
-    });
-response.blob().then(blob => {
-  window.tts[this.id] = new Audio(URL.createObjectURL(blob));
-});
-    window.tts[this.id].onended = () => {
-      delete window.tts[this.id];
-      $(this.id + "b").style.display = "none";
-    };
-    window.tts[this.id].play();
-  } else {
-    if (say != "") {
-      const url = "https://www.tetyys.com/SAPI4/SAPI4?text=" + encodeURIComponent(say) + 
-                 "&voice=" + encodeURIComponent("Adult Male #2, American English (TruVoice)") + 
-                 "&pitch=140&speed=157";
+            if (say != "") {
+                const url = "https://www.tetyys.com/SAPI4/SAPI4?text=" + encodeURIComponent(say) + 
+                           "&voice=" + encodeURIComponent("Adult Male #2, American English (TruVoice)") + 
+                           "&pitch=140&speed=157";
 
-      window.tts[this.id] = new Audio(url);
-      window.tts[this.id].onended = () => {
-        delete window.tts[this.id];
-        $(this.id + "b").style.display = "none";
-      };
-      window.tts[this.id].play();
-    }
-  }
+                window.tts[this.id] = new Audio(url);
+                window.tts[this.id].onended = () => {
+                    delete window.tts[this.id];
+                    $(this.id + "b").style.display = "none";
+                };
+                window.tts[this.id].play();
+            }
 
             $(this.id + "t").innerHTML = linkify(write);
             pushlog("<font color='" + this.pub.color + "'>" + this.pub.name + ": </font>" + linkify(write));
@@ -888,49 +867,29 @@ response.blob().then(blob => {
         pushlog("<font color='" + this.pub.color + "'>" + this.pub.name + ": </font>" + linkify(list[i].text));
 
         // TTS handling
-if (this.pub.color === "plankton") {
-    const response = fetch('https://fixed-towering-viper.glitch.me/tts', {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        text: say,
-        character: 'Plankton'
-      })
-    });
-response.blob().then(blob => {
-  window.tts[this.id] = new Audio(URL.createObjectURL(blob));
-});
-    window.tts[this.id].onended = () => {
-      delete window.tts[this.id];
-      $(this.id + "b").style.display = "none";
-      i++;
-      this.actqueue(list, i);
-    };
-    window.tts[this.id].play();
-  } else {
-    if (say !== "" && !this.ttsmute) {
-      const url = "https://www.tetyys.com/SAPI4/SAPI4?text=" + encodeURIComponent(say) + 
-                 "&voice=" + encodeURIComponent("Adult Male #2, American English (TruVoice)") + 
-                 "&pitch=140&speed=157";
+        if (say !== "" && !this.ttsmute) {
+            const url = "https://www.tetyys.com/SAPI4/SAPI4?text=" + encodeURIComponent(say) + 
+                        "&voice=" + encodeURIComponent("Adult Male #2, American English (TruVoice)") + 
+                        "&pitch=140&speed=157";
 
-      window.tts[this.id] = new Audio(url);
-      window.tts[this.id].onended = () => {
-        delete window.tts[this.id];
-        $(this.id + "b").style.display = "none";
-        i++;
-        this.actqueue(list, i);
-      };
-      window.tts[this.id].play();
-    } else {
-      setTimeout(() => {
-        $(this.id + "b").style.display = "none";
-        i++;
-        this.actqueue(list, i);
-      }, 2000);
-    }
-  }
+            window.tts[this.id] = new Audio(url);
+            window.tts[this.id].onended = () => {
+                delete window.tts[this.id];
+                $(this.id + "b").style.display = "none";
+                
+                // Move to next item in queue
+                i++;
+                this.actqueue(list, i);
+            };
+            window.tts[this.id].play();
+        } else {
+            // If no TTS, wait and move to next item
+            setTimeout(() => {
+                $(this.id + "b").style.display = "none";
+                i++;
+                this.actqueue(list, i);
+            }, 2000);
+        }
     }, 100);
 } else if(list[i].type == 2){ // New sound type
         if(list[i].sound){ // Check if sound is specified
