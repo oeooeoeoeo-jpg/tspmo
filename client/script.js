@@ -184,7 +184,7 @@ var resetSock = () => {
 	"genie": "genie",
 	"sam": "sam"
     }
-    const colors = ["purple", "blessed", "yellow", "allah", "red", "blue", "green", "pink", "brown", "orange", "black", "jew", "floyd", "cyan", "white", "king", "pope", "rabbi", "peedy", "clippy", "troll", "jabba", "windows93", "satoko", "trump", "bonzi", "genie", "sam", "mametchi", "dirlewanger", "plankton"];
+    const colors = ["purple", "blessed", "yellow", "allah", "red", "blue", "green", "pink", "brown", "orange", "black", "jew", "floyd", "cyan", "white", "king", "pope", "rabbi", "peedy", "clippy", "troll", "jabba", "windows93", "satoko", "trump", "bonzi", "genie", "sam", "mametchi", "dirlewanger", "plankton","papamametchi"];
   
     //Set up stylesheets
     const sheets = {
