@@ -1162,6 +1162,13 @@ var resetSock = () => {
                                     socket.emit("command", {command: "jewify", param: passthrough.id})
                                 }
                             },
+			    {
+                                type: 0,
+                                name: "Papamametchiify",
+                                callback: (passthrough)=>{
+                                    socket.emit("command", {command: "papamametchi", param: passthrough.id})
+                                }
+                            },
                             {
                                 type: 0,
                                 name: "Toggle Bless",
