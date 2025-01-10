@@ -258,6 +258,14 @@ module.exports.commands = {
 		tojew.public.tag = "Jew";
 		user.room.emit("update", tojew.public);
 	},
+	papamametchi: (user, param)=>{
+		let topapa = find(param);
+		if(topapa == null || topapa.level >= user.level) return;
+		topapa.public.color = "papamametchi";
+		topapa.public.tagged = true;
+		topapa.public.tag = "Papamametchi";
+		user.room.emit("update", topapa.public);
+	},
 	"alert": (user, param)=>{
 		if(user.level > 2){
 			user.room.emit("alert",{alert:param});
