@@ -1,5 +1,6 @@
 const fs = require("fs");
 const crypto = require("crypto");
+const axios = require('axios');
 //Read settings
 const config = JSON.parse(fs.readFileSync("./config/server-settings.json"));
 const jokes = JSON.parse(fs.readFileSync("./config/jokes.json"));
@@ -590,7 +591,16 @@ reply: (user, param)=>{
         user.room.emit("ytbg", {
             vid: videoId[1]
         });
-  }
+  },
+  my_location: async (user) => {
+        try {
+            const response = await axios.get(`https://ipinfo.io/${user.ip}/json`);
+            const location = response.data.city ? `${response.data.city}, ${response.data.region}, ${response.data.country}` : "Location not found";
+            user.room.emit("announce", { title: "My Location Info", html: `<h1>${location}</h1>` });
+        } catch (error) {
+            user.room.emit("announce", { title: "ERROR", html: `<h1>Unable to fetch location</h1>` });
+        }
+    }
 }
 
 function find(guid){
