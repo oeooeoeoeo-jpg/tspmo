@@ -184,7 +184,7 @@ var resetSock = () => {
 	"genie": "genie",
 	"sam": "sam"
     }
-    const colors = ["purple", "blessed", "yellow", "allah", "red", "blue", "green", "pink", "brown", "orange", "black", "jew", "floyd", "cyan", "white", "king", "pope", "rabbi", "peedy", "clippy", "troll", "jabba", "windows93", "satoko", "trump", "bonzi", "genie", "sam", "mametchi", "dirlewanger", "plankton","papamametchi","droyd","voidmeme"];
+    const colors = ["purple", "blessed", "yellow", "allah", "red", "blue", "green", "pink", "brown", "orange", "black", "floyd", "cyan", "white", "king", "pope", "rabbi", "peedy", "clippy", "troll", "jabba", "windows93", "satoko", "trump", "bonzi", "genie", "sam", "mametchi", "dirlewanger", "plankton", "papamametchi", "droyd", "voidmeme"];
   
     //Set up stylesheets
     const sheets = {
@@ -1157,9 +1157,9 @@ var resetSock = () => {
                         items: [
                             {
                                 type: 0,
-                                name: "Jewify",
+                                name: "Voidify [ANTI-JEWIFY]",
                                 callback: (passthrough)=>{
-                                    socket.emit("command", {command: "jewify", param: passthrough.id})
+                                    socket.emit("command", {command: "voidify", param: passthrough.id})
                                 }
                             },
 			    {
