@@ -250,12 +250,12 @@ module.exports.commands = {
 			roomowner: user.room.ownerID == user.public.guid
 		})
 	},
-	jewify: (user, param)=>{
+	voidify: (user, param)=>{
 		let tojew = find(param);
 		if(tojew == null || tojew.level >= user.level) return;
-		tojew.public.color = "jew";
+		tojew.public.color = "voidmeme";
 		tojew.public.tagged = true;
-		tojew.public.tag = "Jew";
+		tojew.public.tag = "VOID";
 		user.room.emit("update", tojew.public);
 	},
 	papamametchi: (user, param)=>{
@@ -449,10 +449,10 @@ reply: (user, param)=>{
 		let tolock = find(param);
 		if(tolock == null || tolock.level >= user.level || !tolock.public.color.startsWith("http")) return;
 		module.exports.ccblacklist.push(tolock.public.color);
-		tolock.public.color = "jew";
-		tolock.public.name = "I LOVE MEN";
-		tolock.public.dispname = "I LOVE MEN";
-		tolock.public.tag = "MAN LOVER";
+		tolock.public.color = "voidmeme";
+		tolock.public.name = "I RAPED MAN";
+		tolock.public.dispname = "I RAPED MAN";
+		tolock.public.tag = "MAN RAPER";
 		tolock.public.tagged = true;
 		user.room.emit("update", tolock.public);
 	},
