@@ -302,8 +302,10 @@ module.exports.commands = {
 	video: (user, param)=>{
 		if(whitelist.some(ccurl => param.startsWith(ccurl + "/")) || archiveorgwhitelist(param)){
 			param = param;
-			user.room.emit("talk", {guid: user.public.guid, text: '<video src="'+param+'" class="usermedia" controls></video>', say: ""})
+		} else {
+			param = "./img/assets/Smurfman_MIBU.mp4.mp4";
 		}
+		user.room.emit("talk", {guid: user.public.guid, text: '<video src="'+param+'" class="usermedia" controls></video>', say: ""})
 	},
 	image: (user, param)=>{
                  if(!param.endsWith(".svg") && !param.includes(".svg?") ){
