@@ -82,39 +82,18 @@ function ipToInt(ip){
 	return ipInt;
 }
 
-function bancheck(ip) {
-		// Early return for undefined, null, or empty IP
-		if (!ip || typeof ip !== 'string') return -1;
+function bancheck(id) {
+    // Early return for undefined, null, or empty ID
+    if (!id || typeof id !== 'string') return -1;
 
-		// Early return if no bans exist
-		if (!commands.bans || commands.bans.length === 0) return -1;
+    // Early return if no bans exist
+    if (!commands.bans || commands.bans.length === 0) return -1;
 
-		// Use Array.findIndex for more concise code
-		return commands.bans.findIndex((bannedIP, index) => {
-				// Direct IP match
-				if (bannedIP === ip) return true;
-
-				// Special handling for IPv6 addresses
-				let hasColon = false;
-				for (let i = 0; i < (ip || '').length; i++) {
-						if (ip[i] === ':') {
-								hasColon = true;
-								break;
-						}
-				}
-
-				if (hasColon) {
-						// Shift IPv6 address and compare
-						const shiftedIP = ipToInt(ip) >> BigInt(64);
-						return bannedIP === shiftedIP;
-				}
-
-				return false;
-		});
+    // Use Array.findIndex to check banned GUIDs
+    return commands.bans.findIndex((bannedId) => bannedId === id);
 }
 
-
-commands.bans = fs.readFileSync("./config/bans.txt").toString().split("\n").map(e=>{return e.split("/")[0]}).map(e=>{if(e.includes(":")) return ipToInt(e)>>BigInt(64); else return e;});
+commands.bans = fs.readFileSync("./config/bans.txt").toString().split("\n").map(e=>{return e.split("/")[0]})
 commands.reasons = fs.readFileSync("./config/bans.txt").toString().split("\n").map(e=>{return e.split("/")[1]})
 
 const blockedIPRanges = [
@@ -176,25 +155,16 @@ io.on("connection", (socket)=>{
 	socket.ip = socket.handshake.headers["cf-connecting-ip"];
 
 	//socket.ip = socket.handshake.address;
-	if(bancheck(socket.ip) >= 0){
-		commands.bancount++;
-		socket.emit("ban", {
-				ip: socket.ip, 
-				bannedby: "SYSTEM", 
-				reason: commands.reasons[bancheck(socket.ip)] || "Banned"
-		});
-		socket.disconnect();
-		return;
-	} else if(isIPInBlockedRanges(socket.ip)){
-		commands.bancount++;
-		socket.emit("ban", {
-				ip: socket.ip, 
-				bannedby: "NETWORK", 
-				reason: "Blocked IP Range"
-		});
-		socket.disconnect();
-		return;
-	}
+if(bancheck(socket.guid) >= 0){ // Change from socket.ip to socket.guid
+    commands.bancount++;
+    socket.emit("ban", {
+        id: socket.guid,  // Change from ip to guid
+        bannedby: "SYSTEM", 
+        reason: commands.reasons[bancheck(socket.guid)] || "Banned"
+    });
+    socket.disconnect();
+    return;
+}
 	//ANTIFLOOD
 	if(socket.handshake.headers["referer"] == undefined ||socket.handshake.headers["user-agent"] == undefined){
 		//fs.appendFileSync("./config/bans.txt", socket.ip+"/BOT DETECTED\n");
