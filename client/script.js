@@ -1490,7 +1490,7 @@ var resetSock = () => {
           <td>
           <span class="win_text">
           <table style="margin-left: 10px;">
-          <tr>Banning ${data.name}, IP ${data.ip}</tr>
+          <tr>Banning ${data.name}, GUID ${data.guid}</tr>
           <tr><td>Reason:</td><td><input id="reason"></td></tr>
           </table>
           </span>
@@ -1498,7 +1498,7 @@ var resetSock = () => {
           </tr>
           </table>
           `, undefined, undefined, undefined, undefined, [{name: "CANCEL"}, {name: "BAN", callback: ()=>{
-            socket.emit("command", {command: "ban", param: data.ip+" "+$("reason").value})
+            socket.emit("command", {command: "ban", param: data.guid+" "+$("reason").value})
           }}])
         })
         socket.on("window", data=>{
@@ -1657,7 +1657,6 @@ socket.on("ytbg", (data) => {
     socket.on("ban", (data)=>{
         error_id = "error_ban";
         $("banned_by").innerHTML = data.bannedby;
-        $("own_ip").innerHTML = data.ip;
         $("ban_reason").innerHTML = data.reason;
     })
     socket.on("restart", ()=>{
