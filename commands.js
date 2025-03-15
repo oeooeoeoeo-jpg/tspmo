@@ -547,7 +547,7 @@ reply: (user, param)=>{
         name: victim.public.name, 
         id: victim.public.guid  // Change from ip to guid
     })
-}
+},
   massbless: (user)=>{
     Object.keys(user.room.users).forEach(usr=>{
       usr = user.room.users[usr];
