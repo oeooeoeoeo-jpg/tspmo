@@ -500,17 +500,23 @@ reply: (user, param)=>{
       return;
     }
 
-	module.exports.bans.push(param.includes(":") ? ipToInt(param)>>BigInt(64) : param);
-	module.exports.reasons.push(reason);
+    // Remove IP-based functionality
+    module.exports.bans.push(param);  // Only store the user ID/name
+    module.exports.reasons.push(reason);
+    
     Object.keys(user.room.users).forEach((usr)=>{
       let toban = user.room.users[usr];
-      if(toban.socket.ip == param){
-        toban.socket.emit("ban", {ip: param, bannedby: user.public.name, reason: reason});
+      if(toban.public.guid === param){ // Change to use GUID instead of IP
+        toban.socket.emit("ban", {
+            id: param,  // Change from ip to id
+            bannedby: user.public.name, 
+            reason: reason
+        });
         toban.socket.disconnect();
       }
     })
     fs.appendFileSync("./config/bans.txt", param+'/'+reason+"\n")
-	},
+},
 	lip: (user)=>{
 		user.socket.emit("window", {title: "last IP", html:module.exports.lip});
 	},
@@ -535,10 +541,13 @@ reply: (user, param)=>{
       victim.smute = !victim.smute;
   },
   banmenu: (user, param)=>{
-  	let victim = find(param);
+    let victim = find(param);
     if(victim == null || victim.level >= user.level) return;
-    user.socket.emit("banwindow", {name: victim.public.name, ip: victim.socket.ip})
-  },
+    user.socket.emit("banwindow", {
+        name: victim.public.name, 
+        id: victim.public.guid  // Change from ip to guid
+    })
+}
   massbless: (user)=>{
     Object.keys(user.room.users).forEach(usr=>{
       usr = user.room.users[usr];
